@@ -1,0 +1,50 @@
+# Ignore everything by default; this directory contains credentials, logs, caches,
+# session transcripts, SQLite state, and bundled plugin/runtime files.
+*
+
+# Keep this repository policy.
+!.gitignore
+!AGENTS.md
+!config.json
+!config.toml
+!hooks.json
+!instructions.md
+!version.json
+
+# Local Codex configuration directories.
+!agents/
+!agents/**
+!hooks/
+!hooks/**
+!rules/
+!rules/**
+
+# Never track sensitive or high-churn local state.
+auth.json
+history.json
+history.jsonl
+installation_id
+session_index.jsonl
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.log
+.codex-global-state.json
+.codex-global-state.json.bak
+.personality_migration
+.tmp/
+archived_sessions/
+cache/
+claude-cowork-transcript-imports/
+computer-use/
+log/
+logs/
+memories/
+models_cache.json
+plugins/
+sessions/
+shell_snapshots/
+skills/
+sqlite/
+tmp/
+vendor_imports/

@@ -1,0 +1,47 @@
+prefix_rule(
+    pattern=["rm"],
+    decision="forbidden",
+    justification="rm is excluded from the allow-all shell policy.",
+    match=[
+        "rm file.txt",
+        "rm -rf build",
+    ],
+)
+
+prefix_rule(
+    pattern=["rmdir"],
+    decision="forbidden",
+    justification="Directory removal is excluded from the allow-all shell policy.",
+)
+
+prefix_rule(
+    pattern=["unlink"],
+    decision="forbidden",
+    justification="File unlinking is excluded from the allow-all shell policy.",
+)
+
+for command in [
+    "git",
+    "python",
+    "python3",
+    "pip",
+    "pip3",
+    "uv",
+    "java",
+    "javac",
+    "jar",
+    "mvn",
+    "gradle",
+    "./gradlew",
+    "go",
+    "gofmt",
+    "golangci-lint",
+    "node",
+    "nodejs",
+    "npm",
+    "npx",
+    "yarn",
+    "pnpm",
+    "bun",
+]:
+    prefix_rule(pattern=[command], decision="allow")

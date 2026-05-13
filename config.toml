@@ -1,0 +1,180 @@
+notify = ["/Users/dk/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+
+[apps._default]
+default_tools_approval_mode = "approve"
+destructive_enabled = true
+open_world_enabled = true
+
+[mcp_servers.code-review-graph]
+command = "uvx"
+args = [ "code-review-graph", "serve" ]
+type = "stdio"
+default_tools_approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_minimal_context_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_architecture_overview_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.find_large_functions_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_hub_nodes_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_bridge_nodes_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_knowledge_gaps_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.list_flows_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_flow_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.refactor_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.query_graph_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.semantic_search_nodes_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.detect_changes_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_affected_flows_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_review_context_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.build_or_update_graph_tool]
+approval_mode = "approve"
+
+[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos"]
+trust_level = "trusted"
+
+[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-sdk-api"]
+trust_level = "trusted"
+
+[projects."/Users/dk/.codex"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[marketplaces.openai-bundled]
+last_updated = "2026-05-11T10:56:18Z"
+source_type = "local"
+source = "/Users/dk/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.claude-code-warp]
+last_updated = "2026-05-13T04:42:20Z"
+last_revision = "b8ad3cc6c1e40b2d2a944f900a4ae0904a54dd7f"
+source_type = "git"
+source = "https://github.com/warpdotdev/claude-code-warp.git"
+
+[marketplaces.claude-plugins-official]
+last_updated = "2026-05-13T04:42:22Z"
+last_revision = "1a2f18b05cf5652fd25403e8d229fc884fb84103"
+source_type = "git"
+source = "https://github.com/anthropics/claude-plugins-official.git"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-05-11T10:56:49Z"
+source_type = "local"
+source = "/Users/dk/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[plugins."browser-use@openai-bundled"]
+enabled = true
+
+[plugins."warp@claude-code-warp"]
+enabled = true
+
+[plugins."code-review@claude-plugins-official"]
+enabled = true
+
+[plugins."context7@claude-plugins-official"]
+enabled = true
+
+[plugins."anthropic-skills@claude-cowork"]
+enabled = true
+
+[plugins."apollo@claude-cowork"]
+enabled = true
+
+[plugins."bio-research@claude-cowork"]
+enabled = true
+
+[plugins."brand-voice@claude-cowork"]
+enabled = true
+
+[plugins."common-room@claude-cowork"]
+enabled = true
+
+[plugins."cowork-plugin-management@claude-cowork"]
+enabled = true
+
+[plugins."customer-support@claude-cowork"]
+enabled = true
+
+[plugins."data@claude-cowork"]
+enabled = true
+
+[plugins."design@claude-cowork"]
+enabled = true
+
+[plugins."engineering@claude-cowork"]
+enabled = true
+
+[plugins."enterprise-search@claude-cowork"]
+enabled = true
+
+[plugins."finance@claude-cowork"]
+enabled = true
+
+[plugins."human-resources@claude-cowork"]
+enabled = true
+
+[plugins."legal@claude-cowork"]
+enabled = true
+
+[plugins."marketing@claude-cowork"]
+enabled = true
+
+[plugins."operations@claude-cowork"]
+enabled = true
+
+[plugins."product-management@claude-cowork"]
+enabled = true
+
+[plugins."productivity@claude-cowork"]
+enabled = true
+
+[plugins."sales@claude-cowork"]
+enabled = true
+
+[plugins."slack-by-salesforce@claude-cowork"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
