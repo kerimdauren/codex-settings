@@ -9,7 +9,6 @@
 !config.toml
 !hooks.json
 !instructions.md
-!version.json
 
 # Local Codex configuration directories.
 !agents/
@@ -25,18 +24,23 @@ history.json
 history.jsonl
 installation_id
 session_index.jsonl
+version.json
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
 *.log
+.code-review-graph/
 .codex-global-state.json
 .codex-global-state.json.bak
 .personality_migration
 .tmp/
+ambient-suggestions/
 archived_sessions/
 cache/
+claude-cowork-import-history.json
 claude-cowork-transcript-imports/
 computer-use/
+external_agent_session_imports.json
 log/
 logs/
 memories/

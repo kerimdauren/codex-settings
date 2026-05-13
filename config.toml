@@ -67,6 +67,9 @@ trust_level = "trusted"
 [projects."/Users/dk/.codex"]
 trust_level = "trusted"
 
+[projects."/Users/dk/Desktop/c4i-tactical-fight-engagement-assessment-service"]
+trust_level = "trusted"
+
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 
@@ -76,13 +79,13 @@ source_type = "local"
 source = "/Users/dk/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.claude-code-warp]
-last_updated = "2026-05-13T04:42:20Z"
+last_updated = "2026-05-13T15:19:47Z"
 last_revision = "b8ad3cc6c1e40b2d2a944f900a4ae0904a54dd7f"
 source_type = "git"
 source = "https://github.com/warpdotdev/claude-code-warp.git"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-05-13T04:42:22Z"
+last_updated = "2026-05-13T15:19:51Z"
 last_revision = "1a2f18b05cf5652fd25403e8d229fc884fb84103"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
