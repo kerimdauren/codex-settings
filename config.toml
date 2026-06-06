@@ -1,6 +1,10 @@
 notify = ["/Users/dk/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
+personality = "pragmatic"
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+service_tier = "priority"
 
 [apps._default]
 default_tools_approval_mode = "approve"
@@ -9,54 +13,72 @@ open_world_enabled = true
 
 [mcp_servers.code-review-graph]
 command = "uvx"
-args = [ "code-review-graph", "serve" ]
-type = "stdio"
+args = ["code-review-graph", "serve"]
 default_tools_approval_mode = "approve"
 
-[mcp_servers.code-review-graph.tools.get_minimal_context_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_architecture_overview_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.find_large_functions_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_hub_nodes_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_bridge_nodes_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_knowledge_gaps_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.list_flows_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_flow_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.refactor_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.query_graph_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.semantic_search_nodes_tool]
+[mcp_servers.code-review-graph.tools.build_or_update_graph_tool]
 approval_mode = "approve"
 
 [mcp_servers.code-review-graph.tools.detect_changes_tool]
 approval_mode = "approve"
 
+[mcp_servers.code-review-graph.tools.find_large_functions_tool]
+approval_mode = "approve"
+
 [mcp_servers.code-review-graph.tools.get_affected_flows_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_architecture_overview_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_bridge_nodes_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_flow_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_hub_nodes_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_knowledge_gaps_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.get_minimal_context_tool]
 approval_mode = "approve"
 
 [mcp_servers.code-review-graph.tools.get_review_context_tool]
 approval_mode = "approve"
 
-[mcp_servers.code-review-graph.tools.build_or_update_graph_tool]
+[mcp_servers.code-review-graph.tools.list_flows_tool]
 approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.query_graph_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.refactor_tool]
+approval_mode = "approve"
+
+[mcp_servers.code-review-graph.tools.semantic_search_nodes_tool]
+approval_mode = "approve"
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/Codex.app/Contents/Resources/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = ""
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/dk/.codex"
+CODEX_HOME = "/Users/dk/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "2de792ebdf729e85542c94275f6654821dddce546d9c7374c915f2297529e313"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.602.40724"
+CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
 
 [projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos"]
 trust_level = "trusted"
@@ -70,33 +92,112 @@ trust_level = "trusted"
 [projects."/Users/dk/Desktop/c4i-tactical-fight-engagement-assessment-service"]
 trust_level = "trusted"
 
+[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-data-api"]
+trust_level = "trusted"
+
+[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/perf_testing"]
+trust_level = "trusted"
+
+[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-sessions"]
+trust_level = "trusted"
+
+[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-integrations"]
+trust_level = "trusted"
+
+[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-beeface"]
+trust_level = "trusted"
+
+[projects."/Users/dk"]
+trust_level = "trusted"
+
+[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-dashboard"]
+trust_level = "trusted"
+
+[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-beedoc"]
+trust_level = "trusted"
+
+[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-liveness"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline"]
+trust_level = "trusted"
+
+[projects."/Users/dk/.claude"]
+trust_level = "trusted"
+
+[projects."/Users/dk/beeline/projects/biometry/biometry-2.0/repos/beeface"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-3.0"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/personal"]
+trust_level = "trusted"
+
+[projects."/Users/dk/Documents/Codex/2026-06-01/user-level-project-level"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/life"]
+trust_level = "trusted"
+
+[projects."/Users/dk/Documents/Codex/2026-06-02/one-drive"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-2.0"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-integrations"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-data-api"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/dakeea"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-2.0/code/biometry-internal-api"]
+trust_level = "trusted"
+
+[projects."/Users/dk/Documents/Codex/2026-06-05/user-level-git"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-2.0/code/beedoc-backend"]
+trust_level = "trusted"
+
+[tui]
+status_line = ["model-with-reasoning", "current-dir", "context-remaining", "context-used", "five-hour-limit"]
+status_line_use_colors = true
+
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 
 [marketplaces.openai-bundled]
-last_updated = "2026-05-11T10:56:18Z"
+last_updated = "2026-06-06T13:45:52Z"
 source_type = "local"
 source = "/Users/dk/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.claude-code-warp]
-last_updated = "2026-05-13T15:19:47Z"
-last_revision = "b8ad3cc6c1e40b2d2a944f900a4ae0904a54dd7f"
+last_updated = "2026-05-31T07:12:52Z"
+last_revision = "bb6c1cf2f5cd7eb609678a2b175e7f4504ca61c2"
 source_type = "git"
 source = "https://github.com/warpdotdev/claude-code-warp.git"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-05-13T15:19:51Z"
-last_revision = "1a2f18b05cf5652fd25403e8d229fc884fb84103"
+last_updated = "2026-06-06T04:20:05Z"
+last_revision = "3d5017bc1d40ef08c5733243516afeb993a6f5e5"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-05-11T10:56:49Z"
+last_updated = "2026-06-01T18:21:07Z"
 source_type = "local"
 source = "/Users/dk/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
-[plugins."browser-use@openai-bundled"]
-enabled = true
+[marketplaces.headroom-marketplace]
+last_updated = "2026-06-06T13:45:55Z"
+last_revision = "26f325f57b7c1098af9f2df9438abd0bc6189a6b"
+source_type = "git"
+source = "https://github.com/chopratejas/headroom.git"
 
 [plugins."warp@claude-code-warp"]
 enabled = true
@@ -176,8 +277,53 @@ enabled = true
 [plugins."presentations@openai-primary-runtime"]
 enabled = true
 
+[plugins."google-drive@openai-curated"]
+enabled = true
+
+[plugins."google-calendar@openai-curated"]
+enabled = true
+
+[plugins."gmail@openai-curated"]
+enabled = true
+
+[plugins."headroom@headroom-marketplace"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
 [plugins."chrome@openai-bundled"]
 enabled = true
 
-[plugins."computer-use@openai-bundled"]
-enabled = true
+[hooks.state]
+
+[hooks.state."/Users/dk/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:cd5e9e02dac29a3de5c01bd9216f7ac6893e74f5c3e737ed9e11c8995a6ccc93"
+
+[hooks.state."/Users/dk/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:884a835c2bfa6a80fc9724a3137e4dd90603e6435a7e8e3e6ca12a63a49f12da"
+
+[hooks.state."warp@claude-code-warp:hooks/hooks.json:permission_request:0:0"]
+trusted_hash = "sha256:b8a12698a4cb64d767edd82090f55ad4d6ffaae0e829a5ad6c0b13d1e1d749a0"
+
+[hooks.state."warp@claude-code-warp:hooks/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:645f5c88fe5517fb11be9028aba060bb4651ddde18cc4a702bca0593d9231435"
+
+[hooks.state."warp@claude-code-warp:hooks/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:6c0b0fe34d02f93b3bc6c122a2f10fd46f17a6a4664061a47532ed548122cfb9"
+
+[hooks.state."warp@claude-code-warp:hooks/hooks.json:stop:0:0"]
+trusted_hash = "sha256:092e9cb1a2e5c816e80f255ce10d61df5f02ee838626dd7e5cf344c219661fef"
+
+[hooks.state."warp@claude-code-warp:hooks/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:61fd2273d74dce7604b6bb4e18bfa8da89ec59d4bde8ae4f90442bc3421b796b"
+
+[features]
+memories = true
+terminal_resize_reflow = true
+mentions_v2 = true
+prevent_idle_sleep = true
+js_repl = false
+
+[desktop]
+keepRemoteControlAwakeWhilePluggedIn = true
