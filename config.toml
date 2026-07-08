@@ -1,10 +1,11 @@
 notify = ["/Users/dk/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
-approval_policy = "never"
-sandbox_mode = "danger-full-access"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
 personality = "pragmatic"
 model = "gpt-5.5"
 model_reasoning_effort = "high"
-service_tier = "priority"
+service_tier = "default"
+approvals_reviewer = "auto_review"
 
 [apps._default]
 default_tools_approval_mode = "approve"
@@ -63,21 +64,21 @@ approval_mode = "approve"
 
 [mcp_servers.node_repl]
 args = []
-command = "/Applications/Codex.app/Contents/Resources/node_repl"
+command = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl"
 startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
-NODE_REPL_NODE_MODULE_DIRS = ""
-NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/node"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/dk/.codex"
 CODEX_HOME = "/Users/dk/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "2de792ebdf729e85542c94275f6654821dddce546d9c7374c915f2297529e313"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "97669f77b3ca7114a2df05d55646416ea34b28100c07213ef9f643803449ef2f"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.602.40724"
+BROWSER_USE_CODEX_APP_VERSION = "26.623.141536"
 CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
 
 [projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos"]
@@ -164,6 +165,66 @@ trust_level = "trusted"
 [projects."/Users/dk/ai/beeline/projects/biometry-2.0/code/beedoc-backend"]
 trust_level = "trusted"
 
+[projects."/Users/dk/Documents/Codex/2026-06-06/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/dk/Documents/Codex/2026-06-06/two-bedroom-ikea"]
+trust_level = "trusted"
+
+[projects."/Users/dk/Documents/Codex/2026-06-08/whatsapp-telegram"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-sessions"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-beeface"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-liveness"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beamtrail"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-beedoc"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-sdk-api"]
+trust_level = "trusted"
+
+[projects."/Users/dk/Documents/Codex/2026-06-17/acretin-c-nadixa"]
+trust_level = "trusted"
+
+[projects."/Users/dk/Documents/Codex/2026-06-17/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-common"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-readiness"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/alvend"]
+trust_level = "trusted"
+
+[projects."/Users/dk/ai/career"]
+trust_level = "trusted"
+
+[projects."/Users/dk/Documents/Codex/2026-07-02/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/dk/Documents/Codex/2026-07-06/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/dk/Documents/Codex/2026-07-08/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/dk/Documents/Codex/2026-07-08/new-chat-2"]
+trust_level = "trusted"
+
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "context-remaining", "context-used", "five-hour-limit"]
 status_line_use_colors = true
@@ -172,30 +233,30 @@ status_line_use_colors = true
 "gpt-5.5" = 4
 
 [marketplaces.openai-bundled]
-last_updated = "2026-06-06T13:45:52Z"
+last_updated = "2026-07-07T06:23:03Z"
 source_type = "local"
 source = "/Users/dk/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.claude-code-warp]
-last_updated = "2026-05-31T07:12:52Z"
-last_revision = "bb6c1cf2f5cd7eb609678a2b175e7f4504ca61c2"
+last_updated = "2026-06-22T16:42:30Z"
+last_revision = "58c823da195346a7e6645fd2d9484d0e38db6bc2"
 source_type = "git"
 source = "https://github.com/warpdotdev/claude-code-warp.git"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-06-06T04:20:05Z"
-last_revision = "3d5017bc1d40ef08c5733243516afeb993a6f5e5"
+last_updated = "2026-07-08T10:41:53Z"
+last_revision = "72a63d5d082937f3af121354e0c168bee1be4b56"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-06-01T18:21:07Z"
+last_updated = "2026-07-01T06:21:26Z"
 source_type = "local"
 source = "/Users/dk/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.headroom-marketplace]
-last_updated = "2026-06-06T13:45:55Z"
-last_revision = "26f325f57b7c1098af9f2df9438abd0bc6189a6b"
+last_updated = "2026-07-08T10:42:01Z"
+last_revision = "4f22cbb05cecd08b42433b6ec19bb926c67e4613"
 source_type = "git"
 source = "https://github.com/chopratejas/headroom.git"
 
@@ -289,10 +350,22 @@ enabled = true
 [plugins."headroom@headroom-marketplace"]
 enabled = true
 
+[plugins."teams@openai-curated"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
 [plugins."browser@openai-bundled"]
 enabled = true
 
 [plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
 enabled = true
 
 [hooks.state]
@@ -318,6 +391,15 @@ trusted_hash = "sha256:092e9cb1a2e5c816e80f255ce10d61df5f02ee838626dd7e5cf344c21
 [hooks.state."warp@claude-code-warp:hooks/hooks.json:user_prompt_submit:0:0"]
 trusted_hash = "sha256:61fd2273d74dce7604b6bb4e18bfa8da89ec59d4bde8ae4f90442bc3421b796b"
 
+[hooks.state."headroom@headroom-marketplace:hooks/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:41bfb7c339de7944d3e71c58372a892ad35690694b72af49d4c025cbac975922"
+
+[hooks.state."headroom@headroom-marketplace:hooks/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:0a1b17a98b1f17577a17cd8fbde07a585d0b7d32b2df17a2bbb3df38aff6fa32"
+
+[hooks.state."/Users/dk/ai/beeline/projects/biometry-3.0/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:a3b9f63bb8dfeae7d761217a7574194ef00b430ae3466a50fb379aeab6403321"
+
 [features]
 memories = true
 terminal_resize_reflow = true
@@ -327,3 +409,5 @@ js_repl = false
 
 [desktop]
 keepRemoteControlAwakeWhilePluggedIn = true
+followUpQueueMode = "queue"
+open-local-url-in-target-preference = "in-app-browser"
