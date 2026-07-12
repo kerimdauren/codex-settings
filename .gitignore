@@ -5,23 +5,26 @@
 # Keep this repository policy.
 !.gitignore
 !AGENTS.md
-!config.json
-!config.toml
+!SETUP.md
+!shared.config.toml
 !hooks.json
-!instructions.md
 
-# Local Codex configuration directories.
-!agents/
-!agents/**
-!hooks/
-!hooks/**
+# Portable Codex configuration directories.
 !rules/
 !rules/**
+!scripts/
+!scripts/**
+scripts/__pycache__/
+scripts/**/*.pyc
 
 # Never track sensitive or high-churn local state.
 auth.json
+config.json
+config.toml
+.setup-complete
 history.json
 history.jsonl
+instructions.md
 installation_id
 session_index.jsonl
 version.json

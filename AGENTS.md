@@ -7,6 +7,15 @@
 - Put repository, language, framework, deployment, security-policy, and verification requirements in the nearest project-level `AGENTS.md` where they apply.
 - More specific project instructions and newer user or developer instructions take precedence over this file.
 
+## Initial platform setup
+
+- Treat the Codex environment as uninitialized when `$CODEX_HOME/.setup-complete` is absent, using `$HOME/.codex` when `CODEX_HOME` is unset.
+- In an uninitialized environment, read `$CODEX_HOME/SETUP.md` and run the read-only platform diagnostics before normal work.
+- Detect the operating system, architecture, home directory, shell, Codex installation, authentication state, required tools, MCP servers, hooks, command rules, and trusted `ai` workspace.
+- Present detected, missing, optional, incompatible, and planned items as a checklist before making setup changes.
+- Do not install software, authenticate accounts, overwrite local configuration, or change security settings until the user approves the checklist.
+- After approved setup, verify the environment and create the ignored `$CODEX_HOME/.setup-complete` marker with the diagnostic tool.
+
 ## Communication
 
 - Do not use emojis or decorative symbols.
