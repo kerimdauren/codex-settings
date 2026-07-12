@@ -1,9 +1,9 @@
 notify = ["/Users/dk/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
-approval_policy = "on-request"
+approval_policy = "never"
 sandbox_mode = "workspace-write"
 personality = "pragmatic"
-model = "gpt-5.5"
-model_reasoning_effort = "high"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "medium"
 service_tier = "default"
 approvals_reviewer = "auto_review"
 
@@ -64,165 +64,32 @@ approval_mode = "approve"
 
 [mcp_servers.node_repl]
 args = []
-command = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl"
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
 startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
-NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_node/lib/node_modules"
-NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/dk/.codex"
 CODEX_HOME = "/Users/dk/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "97669f77b3ca7114a2df05d55646416ea34b28100c07213ef9f643803449ef2f"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e74b67ab909392b37f7aef14977fce7aa80cfa02ade5491f30abcdbcb9e69f33"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.623.141536"
-CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+BROWSER_USE_CODEX_APP_VERSION = "26.707.51957"
+SKY_CUA_SERVICE_PATH = "/Users/dk/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000387/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
-[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos"]
-trust_level = "trusted"
-
-[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-sdk-api"]
-trust_level = "trusted"
-
-[projects."/Users/dk/.codex"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Desktop/c4i-tactical-fight-engagement-assessment-service"]
-trust_level = "trusted"
-
-[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-data-api"]
-trust_level = "trusted"
-
-[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/perf_testing"]
-trust_level = "trusted"
-
-[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-sessions"]
-trust_level = "trusted"
-
-[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-integrations"]
-trust_level = "trusted"
-
-[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-beeface"]
-trust_level = "trusted"
-
-[projects."/Users/dk"]
-trust_level = "trusted"
-
-[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-dashboard"]
-trust_level = "trusted"
-
-[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-beedoc"]
-trust_level = "trusted"
-
-[projects."/Users/dk/beeline/projects/biometry/biometry-3.0/repos/b3-liveness"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline"]
-trust_level = "trusted"
-
-[projects."/Users/dk/.claude"]
-trust_level = "trusted"
-
-[projects."/Users/dk/beeline/projects/biometry/biometry-2.0/repos/beeface"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-3.0"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/personal"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Documents/Codex/2026-06-01/user-level-project-level"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/life"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Documents/Codex/2026-06-02/one-drive"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-2.0"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-integrations"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-data-api"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/dakeea"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-2.0/code/biometry-internal-api"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Documents/Codex/2026-06-05/user-level-git"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-2.0/code/beedoc-backend"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Documents/Codex/2026-06-06/new-chat"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Documents/Codex/2026-06-06/two-bedroom-ikea"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Documents/Codex/2026-06-08/whatsapp-telegram"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-sessions"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-beeface"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-liveness"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beamtrail"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-beedoc"]
-trust_level = "trusted"
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
 
 [projects."/Users/dk/ai"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-sdk-api"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Documents/Codex/2026-06-17/acretin-c-nadixa"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Documents/Codex/2026-06-17/new-chat"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-common"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/beeline/projects/biometry-3.0/code/b3-readiness"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/alvend"]
-trust_level = "trusted"
-
-[projects."/Users/dk/ai/career"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Documents/Codex/2026-07-02/new-chat"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Documents/Codex/2026-07-06/new-chat"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Documents/Codex/2026-07-08/new-chat"]
-trust_level = "trusted"
-
-[projects."/Users/dk/Documents/Codex/2026-07-08/new-chat-2"]
 trust_level = "trusted"
 
 [tui]
@@ -231,9 +98,10 @@ status_line_use_colors = true
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+"gpt-5.6-sol" = 4
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-07T06:23:03Z"
+last_updated = "2026-07-12T11:47:50Z"
 source_type = "local"
 source = "/Users/dk/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -244,19 +112,19 @@ source_type = "git"
 source = "https://github.com/warpdotdev/claude-code-warp.git"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-08T10:41:53Z"
-last_revision = "72a63d5d082937f3af121354e0c168bee1be4b56"
+last_updated = "2026-07-12T14:40:55Z"
+last_revision = "7e5f01c661543f246196e67c2b5b9b4e774ae0be"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-07-01T06:21:26Z"
+last_updated = "2026-07-10T10:21:28Z"
 source_type = "local"
 source = "/Users/dk/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.headroom-marketplace]
-last_updated = "2026-07-08T10:42:01Z"
-last_revision = "4f22cbb05cecd08b42433b6ec19bb926c67e4613"
+last_updated = "2026-07-12T11:21:05Z"
+last_revision = "868b88bc6400c98f11134dbbe3cb03d1ecff7e1d"
 source_type = "git"
 source = "https://github.com/chopratejas/headroom.git"
 
@@ -356,9 +224,6 @@ enabled = true
 [plugins."pdf@openai-primary-runtime"]
 enabled = true
 
-[plugins."browser@openai-bundled"]
-enabled = true
-
 [plugins."chrome@openai-bundled"]
 enabled = true
 
@@ -366,6 +231,12 @@ enabled = true
 enabled = true
 
 [plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
 enabled = true
 
 [hooks.state]
@@ -411,3 +282,5 @@ js_repl = false
 keepRemoteControlAwakeWhilePluggedIn = true
 followUpQueueMode = "queue"
 open-local-url-in-target-preference = "in-app-browser"
+dock-icon-preference = "codex-system"
+conversationDetailMode = "STEPS_COMMANDS"
