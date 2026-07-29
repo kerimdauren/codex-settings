@@ -1,5 +1,5 @@
 approval_policy = "never"
-sandbox_mode = "workspace-write"
+sandbox_mode = "danger-full-access"
 personality = "pragmatic"
 model = "gpt-5.6-sol"
 model_reasoning_effort = "medium"
@@ -15,51 +15,6 @@ open_world_enabled = true
 command = "uvx"
 args = ["code-review-graph", "serve"]
 default_tools_approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.build_or_update_graph_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.detect_changes_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.find_large_functions_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_affected_flows_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_architecture_overview_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_bridge_nodes_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_flow_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_hub_nodes_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_knowledge_gaps_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_minimal_context_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.get_review_context_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.list_flows_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.query_graph_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.refactor_tool]
-approval_mode = "approve"
-
-[mcp_servers.code-review-graph.tools.semantic_search_nodes_tool]
-approval_mode = "approve"
 
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "context-remaining", "context-used", "five-hour-limit"]

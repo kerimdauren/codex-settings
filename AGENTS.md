@@ -2,19 +2,17 @@
 
 ## Scope and precedence
 
-- Work only inside the user's `ai` workspace: `$HOME/ai` on macOS/Linux and `%USERPROFILE%\ai` on Windows, unless the user explicitly authorizes another location.
+- Work across the local filesystem when needed for the user's task. Treat destructive operations and external side effects with appropriate care.
 - Keep this file platform-independent. Use environment variables and tools available on macOS, Linux, and Windows instead of hardcoded home directories or OS-specific application paths.
 - Put repository, language, framework, deployment, security-policy, and verification requirements in the nearest project-level `AGENTS.md` where they apply.
 - More specific project instructions and newer user or developer instructions take precedence over this file.
 
-## Initial platform setup
+## AI workspace layout
 
-- Treat the Codex environment as uninitialized when `$CODEX_HOME/.setup-complete` is absent, using `$HOME/.codex` when `CODEX_HOME` is unset.
-- In an uninitialized environment, read `$CODEX_HOME/SETUP.md` and run the read-only platform diagnostics before normal work.
-- Detect the operating system, architecture, home directory, shell, Codex installation, authentication state, required tools, MCP servers, hooks, command rules, and trusted `ai` workspace.
-- Present detected, missing, optional, incompatible, and planned items as a checklist before making setup changes.
-- Do not install software, authenticate accounts, overwrite local configuration, or change security settings until the user approves the checklist.
-- After approved setup, verify the environment and create the ignored `$CODEX_HOME/.setup-complete` marker with the diagnostic tool.
+- When working under the user home directory's `ai/` workspace, store project context and documentation in `ai/projects/`.
+- Store project source code in `ai/code/`.
+- Store, upload, and process temporary data only in `ai/temp/`.
+- For every project, maintain project-local `memories/` and `rules/` directories in its context root. Put durable project knowledge and decisions in `memories/`, and operational or engineering requirements in `rules/`. Read the relevant files before work and keep them current; update memory only when the user explicitly asks to persist it.
 
 ## Communication
 
@@ -24,11 +22,10 @@
 
 ## Engineering
 
-- Use Context7 before implementing code that depends on a third-party library or API when current external documentation is needed.
 - Prefer the smallest complete change that satisfies the request and matches the existing project style.
 - Touch only files required by the task. Do not refactor, reformat, or remove unrelated code.
 - Comment only non-obvious, complex, or error-prone logic.
-- Do not execute the `rm` command. Use a reversible or narrowly scoped alternative.
+- Do not execute `rm -rf` unless the user explicitly approves the exact command and target path. Prefer reversible or narrowly scoped alternatives.
 - Define success criteria for multi-step work and verify the result in proportion to the risk.
 - Add or update tests for behavior changes when practical; for bug fixes, prefer a reproducing test.
 - Treat repeated workflows as reusable skills, tools, or automations only after repetition demonstrates the need. Keep project-specific knowledge with the project.
