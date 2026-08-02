@@ -7,4 +7,8 @@ if ! command -v uv >/dev/null 2>&1; then
 fi
 
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-exec uv run --script "$SCRIPT_DIR/bootstrap.py"
+uv run --script "$SCRIPT_DIR/bootstrap.py"
+
+if [ "${CODEX_SKIP_AUTOSYNC_INSTALL:-0}" != "1" ]; then
+    exec "$SCRIPT_DIR/install-autosync.sh"
+fi

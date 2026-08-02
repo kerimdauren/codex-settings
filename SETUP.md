@@ -64,6 +64,11 @@ macOS or Linux:
 ~/.codex/scripts/bootstrap-unix.sh
 ```
 
+On Linux this also installs a user systemd timer. On macOS it installs a
+LaunchAgent. Both check the `ai` and `codex-settings` repositories every five
+minutes. The session-start hook also starts a non-blocking check whenever Codex
+starts. Repositories with local changes are never reset or overwritten.
+
 Windows PowerShell:
 
 ```powershell

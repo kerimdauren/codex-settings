@@ -18,6 +18,11 @@
         "hooks": [
           {
             "type": "command",
+            "command": "~/.codex/scripts/sync-github-settings.sh --background",
+            "timeout": 5
+          },
+          {
+            "type": "command",
             "command": "uvx code-review-graph status",
             "timeout": 10
           }
