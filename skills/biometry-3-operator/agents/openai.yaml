@@ -1,0 +1,4 @@
+interface:
+  display_name: "Biometry 3.0 Operator"
+  short_description: "Safely operate Biometry 3.0 services"
+  default_prompt: "Use $biometry-3-operator to handle this Biometry 3.0 task."

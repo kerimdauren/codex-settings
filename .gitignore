@@ -16,6 +16,10 @@
 !scripts/**
 scripts/__pycache__/
 scripts/**/*.pyc
+!skills/
+!skills/**
+skills/**/__pycache__/
+skills/**/*.pyc
 
 # Never track sensitive or high-churn local state.
 auth.json
@@ -51,7 +55,6 @@ models_cache.json
 plugins/
 sessions/
 shell_snapshots/
-skills/
 sqlite/
 tmp/
 vendor_imports/
