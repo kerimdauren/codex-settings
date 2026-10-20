@@ -45,19 +45,6 @@ def command_succeeds(command: list[str]) -> bool:
     return result.returncode == 0
 
 
-def command_output(command: list[str]) -> str:
-    try:
-        result = subprocess.run(
-            command,
-            check=False,
-            capture_output=True,
-            text=True,
-            timeout=20,
-        )
-    except (OSError, subprocess.TimeoutExpired):
-        return ""
-    return f"{result.stdout}\n{result.stderr}" if result.returncode == 0 else ""
-
 
 def read_toml(path: Path) -> dict[str, Any] | None:
     if not path.exists():
@@ -150,8 +137,6 @@ def inspect_environment() -> dict[str, Any]:
     authenticated = bool(
         tools["codex"] and command_succeeds(["codex", "login", "status"])
     )
-    mcp_output = command_output(["codex", "mcp", "list"]) if tools["codex"] else ""
-    code_review_graph_ready = "code-review-graph" in mcp_output
     incompatible = incompatible_paths(system, local_config)
 
     planned_actions: list[str] = []
@@ -164,8 +149,6 @@ def inspect_environment() -> dict[str, Any]:
         planned_actions.append(f"Run scripts/{script}")
     if not authenticated:
         planned_actions.append("Run codex login")
-    if not code_review_graph_ready:
-        planned_actions.append("Verify code-review-graph with codex mcp list")
     if incompatible:
         planned_actions.append(
             "Remove configuration paths from another operating system"
@@ -177,7 +160,6 @@ def inspect_environment() -> dict[str, Any]:
             not shared_applied,
             not trusted_workspace_valid,
             not authenticated,
-            not code_review_graph_ready,
             incompatible,
         )
     )
@@ -195,7 +177,6 @@ def inspect_environment() -> dict[str, Any]:
         "local_config_present": local_config is not None,
         "shared_config_applied": shared_applied,
         "trusted_workspace_valid": trusted_workspace_valid,
-        "code_review_graph_ready": code_review_graph_ready,
         "hooks_present": (codex_home / "hooks.json").exists(),
         "rules_present": (codex_home / "rules" / "default.rules").exists(),
         "required_missing": required_missing,

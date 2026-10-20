@@ -2,76 +2,70 @@
 
 Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
 
-**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
-
 ## 1. Think Before Coding
 
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
+**Don't hide confusion. Surface tradeoffs.**
 
 Before implementing:
-- State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
+- If an unresolved choice materially changes the result, architecture, or risk, present concrete options with tradeoffs and a recommended default, then ask.
+- For routine implementation choices, use the existing pattern and proceed. State an assumption when it affects the result.
 - If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop. Name what's confusing. Ask.
-- Verify current library and framework documentation through Context7; if it is unavailable, use the official vendor documentation and state the fallback.
+- Check current official documentation when a decision depends on the version or behavior of an external library, framework, or API. Use Context7 or web search if the official documentation is unavailable.
 
 ## 2. Simplicity First
 
 **Minimum code that solves the problem. Nothing speculative.**
 
 - No features beyond what was asked.
-- No abstractions for single-use code.
-- No "flexibility" or "configurability" that wasn't requested.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
+- No abstractions or helpers for single-use code.
+- No speculative "flexibility" or "configurability" that wasn't requested.
+- No defensive error handling for impossible scenarios.
 
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+### Default Decision Rule
+
+- Start with the smallest readable solution that satisfies the current task.
+- Add complexity only when required by an explicit requirement, observed behavior, or an existing project constraint. Identify that reason.
+- A hypothetical edge case alone does not justify additional code. Address it when evidence supports it or its consequences are substantial.
+- Do not add layers, interfaces, configuration, retries, fallbacks, or custom error types without a concrete need in the current task.
+- Prefer direct code. Extract a helper when it removes meaningful duplication or makes the code easier to understand.
+- Before finishing, remove complexity introduced by your changes that is not necessary for the requested behavior.
 
 ## 3. Surgical Changes
 
 **Touch only what you must. Clean up only your own mess.**
 
 When editing existing code:
-- Don't "improve" adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
-- Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
+- Avoid unrelated changes to code, comments, or formatting.
+- Don't refactor unrelated working code.
+- Match existing style, naming conventions, and patterns.
+- If you spot unrelated dead code or bugs, mention them in your response — do not edit them.
 
 When your changes create orphans:
-- Remove imports/variables/functions that YOUR changes made unused.
-- Don't remove pre-existing dead code unless asked.
+- Remove imports, variables, and helpers that YOUR changes made obsolete.
+- Keep pre-existing unused code intact unless explicitly instructed.
 
-The test: Every changed line should trace directly to the user's request.
+## 4. Workspace & Git Hygiene
 
-## 4. Goal-Driven Execution
+- Don't discard existing work or data unless the user has authorized that loss.
+- Never commit secrets, `.env` files, or credential dumps.
+- Before any commit or push, run `ponytail:ponytail-review` on the complete task diff, including staged, unstaged, and task-owned untracked files. For already committed changes, review the outgoing commit diff.
+- Remove unnecessary code and fix actionable findings, then run the relevant checks. If the diff changes, review it again before committing or pushing. Loading the skill or passing tests alone does not satisfy this gate.
 
-**Define success criteria. Loop until verified.**
+## 5. Goal-Driven Execution
 
-Transform tasks into verifiable goals:
-- "Add validation" → "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" → "Write a test that reproduces it, then make it pass"
-- "Refactor X" → "Ensure tests pass before and after"
+- For behavior changes, run the smallest useful check. Reproduce a reported bug before fixing it when feasible.
+- For refactors, compare behavior before and after.
+- For multi-step tasks, state a concise plan with a check for each step.
 
-For multi-step tasks, state a brief plan:
-```
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-3. [Step] → verify: [check]
-```
+## 6. Communication & Style
 
-Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+- After analyzing a large task, if independent subtasks emerge, propose splitting them. For each subtask, prepare a short starter prompt for a new chat covering the goal, relevant files, agreed decisions, constraints, and acceptance criteria. Include only the context needed to avoid repeating the analysis. If the subtasks are tightly coupled and continuing in the current chat is more efficient, briefly explain why. Do not create new chats automatically.
 
-## 5. Natural, Specific Writing
+- Respond in the user's language while keeping rules, commit messages, and internal instructions in English.
+- Extend existing rules and files rather than scattering guidance across new files.
 
-- Write for immediate comprehension. Use concrete terms and unambiguous statements; remove vague abstractions and wording that permits multiple interpretations.
-- Be concise. Remove filler, generic introductions, tangents, and details that do not change the task or result.
-- Use active, modern language. Avoid bureaucratic phrasing, passive voice, deeply nested clauses, and long chains of nouns.
-- Match the style and depth established by the request or supplied material. When no style is specified, use concise informational writing.
-- Stay within the requested scope. Add unrequested background only when it changes the conclusion, decision, or safe execution of the task.
-- Avoid formulaic transitions, repeated discourse markers, recurring rhetorical templates, and unusually uniform sentence structure. Do not imitate a person or make claims about authorship.
 
-Keep rules and instructions compact and grouped by topic. Extend the closest existing section instead of scattering related guidance across new sections or files. Write all rules and instructions in English.
-
----
-
-**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+## Coding Standards
+- Before implementing, refactoring, or reviewing Python/FastAPI or Go services and applications, load and follow the `coding-standards` skill from the available skill catalog. For scripts and small utilities, apply only relevant simplicity rules.
+- Use Graphify automatically only for relevant queries against an existing graph. Build or update graphs only when explicitly requested; use direct code search for ordinary lookups and edits.
+- Apply Ponytail session modes only when explicitly requested. This does not change the required `ponytail:ponytail-review` before commit or push.

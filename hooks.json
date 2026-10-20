@@ -1,17 +1,5 @@
 {
   "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "uvx code-review-graph update --skip-flows",
-            "timeout": 30
-          }
-        ]
-      }
-    ],
     "SessionStart": [
       {
         "matcher": "",
@@ -20,11 +8,6 @@
             "type": "command",
             "command": "~/.codex/scripts/sync-github-settings.sh --background",
             "timeout": 5
-          },
-          {
-            "type": "command",
-            "command": "uvx code-review-graph status",
-            "timeout": 10
           }
         ]
       }

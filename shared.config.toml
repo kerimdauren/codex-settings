@@ -1,20 +1,17 @@
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
 personality = "pragmatic"
-model = "gpt-5.6-sol"
-model_reasoning_effort = "medium"
+model = "gpt-6.1-sol"
+model_reasoning_effort = "high"
 service_tier = "default"
 approvals_reviewer = "auto_review"
+model_provider = "openai"
 
 [apps._default]
 default_tools_approval_mode = "approve"
 destructive_enabled = true
 open_world_enabled = true
 
-[mcp_servers.code-review-graph]
-command = "uvx"
-args = ["code-review-graph", "serve"]
-default_tools_approval_mode = "approve"
 
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "context-remaining", "context-used", "five-hour-limit"]

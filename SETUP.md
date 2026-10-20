@@ -87,7 +87,6 @@ Run diagnostics again. Verify that:
 
 - the shared settings are present in the local `config.toml`;
 - exactly one trusted project exists and points to the local `ai` directory;
-- `code-review-graph` is listed by `codex mcp list`;
 - hooks and `rules/default.rules` are valid;
 - `rm` is forbidden;
 - no paths from another operating system remain active.
