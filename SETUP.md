@@ -59,7 +59,9 @@ Do not continue until the user approves the plan.
 After approval, install missing prerequisites and apply the shared configuration.
 
 Keep project-specific skills in the project `.agents/skills/`, outside the shared
-`skills/` synchronization source. Biometry skills are maintained only under
+`skills/` synchronization source. Keep only user-managed skills in that source;
+Codex manages `skills/.system/`, which must not be tracked or synchronized.
+Biometry skills are maintained only under
 `beeline/biometry-3.0/.agents/skills/` in the `ai` checkout. Synchronization copies
 files but does not delete old installed copies; when migrating an existing
 machine, remove only the reviewed obsolete global copies after verifying the

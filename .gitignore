@@ -18,6 +18,7 @@ scripts/__pycache__/
 scripts/**/*.pyc
 !skills/
 !skills/**
+skills/.system/
 skills/**/__pycache__/
 skills/**/*.pyc
 

@@ -51,6 +51,7 @@ When your changes create orphans:
 - Never commit secrets, `.env` files, or credential dumps.
 - Before any commit or push, run `ponytail:ponytail-review` on the complete task diff, including staged, unstaged, and task-owned untracked files. For already committed changes, review the outgoing commit diff.
 - Remove unnecessary code and fix actionable findings, then run the relevant checks. If the diff changes, review it again before committing or pushing. Loading the skill or passing tests alone does not satisfy this gate.
+- A completed review covers both commit and push while the reviewed task diff is unchanged. Reuse its result; repeat review only after a relevant diff change or new finding.
 
 ## 5. Goal-Driven Execution
 
@@ -63,7 +64,7 @@ When your changes create orphans:
 
 ## 6. Communication & Style
 
-- After analyzing a large task, if independent subtasks emerge, propose splitting them. For each subtask, prepare a short starter prompt for a new chat covering the goal, relevant files, agreed decisions, constraints, and acceptance criteria. Include only the context needed to avoid repeating the analysis. If the subtasks are tightly coupled and continuing in the current chat is more efficient, briefly explain why. Do not create new chats automatically.
+- Propose separate chats when the user asks or splitting independent work materially helps execution or context. Prepare starter prompts only when requested or the split is accepted; include the goal, relevant files, settled decisions, constraints, and acceptance criteria. Do not create chats automatically.
 
 - Respond in the user's language while keeping rules, commit messages, and internal instructions in English.
 - Keep progress updates and final answers concise: report conclusions, verification, and material blockers rather than raw logs or repeated plans.

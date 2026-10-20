@@ -41,6 +41,7 @@ sync_ai() {
 }
 
 apply_codex_settings() {
+    local skill_dir
     mkdir -p "$codex_home/rules" "$codex_home/scripts" "$codex_home/skills"
     cp "$settings_checkout/AGENTS.md" \
        "$settings_checkout/SETUP.md" \
@@ -48,7 +49,11 @@ apply_codex_settings() {
        "$settings_checkout/shared.config.toml" \
        "$codex_home/"
     cp -a "$settings_checkout/rules/." "$codex_home/rules/"
-    cp -a "$settings_checkout/skills/." "$codex_home/skills/"
+    # Codex owns hidden system skills; synchronize only user-managed skills.
+    for skill_dir in "$settings_checkout"/skills/*; do
+        [[ -d "$skill_dir" ]] || continue
+        cp -a "$skill_dir" "$codex_home/skills/"
+    done
     find "$settings_checkout/scripts" -maxdepth 1 -type f \
         ! -name 'sync-github-settings.sh' -exec cp {} "$codex_home/scripts/" \;
     CODEX_SKIP_AUTOSYNC_INSTALL=1 "$settings_checkout/scripts/bootstrap-unix.sh"
