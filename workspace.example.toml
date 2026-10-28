@@ -1,0 +1,20 @@
+# Copy this catalog to your private Drive folder as workspace.toml.
+# Never commit the real catalog or secrets to this public settings repository.
+version = 1
+materials = ["demo/AGENTS.md", "demo/context", "demo/docs", "demo/rules", "demo/.agents/skills"]
+
+[drive]
+remote = "codex-projects:Codex Projects"
+
+[bitwarden]
+# For EU accounts use https://vault.bitwarden.eu.
+server = "https://vault.bitwarden.com"
+
+[[repositories]]
+path = "demo/code/app"
+url = "git@github.com:YOUR_ACCOUNT/YOUR_REPOSITORY.git"
+project = "demo"
+
+[[envs]]
+path = "demo/code/app/.env"
+item = "codex/env/demo/code/app/.env"

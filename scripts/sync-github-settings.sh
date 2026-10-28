@@ -15,6 +15,9 @@ export GIT_TERMINAL_PROMPT=0
 codex_home="${CODEX_HOME:-$HOME/.codex}"
 ai_checkout="${CODEX_AI_ROOT:-$HOME/ai}"
 settings_checkout="${CODEX_SETTINGS_CHECKOUT:-$HOME/.local/share/codex-settings}"
+if [[ -f "$codex_home/.workspace-configured" ]]; then
+    exec uv run --script "$codex_home/scripts/workspace.py" sync
+fi
 runtime_dir="${XDG_RUNTIME_DIR:-${TMPDIR:-/tmp}}"
 lock_dir="$runtime_dir/codex-github-sync.lock.d"
 

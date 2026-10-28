@@ -20,6 +20,10 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
+Environment="PATH=$PATH"
+Environment="CODEX_HOME=$codex_home"
+Environment="CODEX_AI_ROOT=${CODEX_AI_ROOT:-$HOME/ai}"
+Environment="CODEX_SETTINGS_CHECKOUT=${CODEX_SETTINGS_CHECKOUT:-$HOME/.local/share/codex-settings}"
 ExecStart=$target_script --once
 EOF
         cat >"$unit_dir/codex-github-sync.timer" <<'EOF'
@@ -53,6 +57,13 @@ EOF
   <array><string>$target_script</string><string>--once</string></array>
   <key>RunAtLoad</key><true/>
   <key>StartInterval</key><integer>300</integer>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key><string>$PATH</string>
+    <key>CODEX_HOME</key><string>$codex_home</string>
+    <key>CODEX_AI_ROOT</key><string>${CODEX_AI_ROOT:-$HOME/ai}</string>
+    <key>CODEX_SETTINGS_CHECKOUT</key><string>${CODEX_SETTINGS_CHECKOUT:-$HOME/.local/share/codex-settings}</string>
+  </dict>
   <key>ProcessType</key><string>Background</string>
 </dict>
 </plist>

@@ -8,6 +8,7 @@
 !SETUP.md
 !shared.config.toml
 !hooks.json
+!workspace.example.toml
 
 # Portable Codex configuration directories.
 !rules/
@@ -58,4 +59,5 @@ sessions/
 shell_snapshots/
 sqlite/
 tmp/
+workspace-state/
 vendor_imports/
