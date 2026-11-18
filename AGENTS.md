@@ -91,3 +91,7 @@ When your changes create orphans:
 - Before implementing, refactoring, or reviewing Python/FastAPI or Go services and applications, load and follow the `coding-standards` skill from the available skill catalog. For scripts and small utilities, apply only relevant simplicity rules.
 - Use Graphify automatically only for relevant queries against an existing graph. Build or update graphs only when explicitly requested; use direct code search for ordinary lookups and edits.
 - Apply Ponytail session modes only when explicitly requested. Use `ponytail:ponytail-review` as the fallback review of code diffs when agy is unavailable.
+
+## Skill Creation and Updates
+
+- Use `skill-creator` before creating or substantially updating a skill.
