@@ -49,7 +49,18 @@ When your changes create orphans:
 
 - Don't discard existing work or data unless the user has authorized that loss.
 - Never commit secrets, `.env` files, or credential dumps.
-- Before any commit or push, run `ponytail:ponytail-review` on the complete task diff, including staged, unstaged, and task-owned untracked files. For already committed changes, review the outgoing commit diff.
+- Independent review gate. Get an independent review from Antigravity CLI (`agy`, model `gemini-4-hydrogen-xhigh`, Google AI Pro subscription, not API tokens) in these cases. Never call `codex` for this: you are Codex, so it would review its own work.
+  1. Local changes: after finishing code changes in a git repository and before any commit or push, review the complete task diff, including staged, unstaged, and task-owned untracked files.
+  2. Plans: before presenting an implementation plan for approval (plan mode, or a plan the user asked for). Not a short progress checklist.
+  3. MR/PR: before creating an MR/PR, review the whole branch against its target branch, not only the latest changes.
+  4. Someone else's MR/branch the user asks to review: run agy as a second opinion next to your own review. Check the branch out in a separate `git worktree` so the user's working tree stays untouched.
+  5. Incident diagnosis: before presenting a root-cause conclusion, or proposing or making a fix based on it, have agy check the conclusion against the evidence.
+  6. Instruction edits: changes to `AGENTS.md`, `CLAUDE.md`, rules, skills, config or hooks, including files outside git.
+- How to run it. agy has no review subcommand, so the prompt names the scope: for local changes, `git diff HEAD` plus the task-owned untracked files by path; for a branch, `git diff <target-branch>...HEAD`; for a commit, `git show <SHA>`; otherwise a request file with the material (plan text; diagnosis with evidence locations; before/after text of instruction edits) by absolute path. Run from the repository root, or from a temporary directory outside git, and wait for it to finish before passing the gate (commit, push, MR, plan approval, fix): `agy -p "<scope>. Report concrete problems only, each with file:line and a fix. Do not modify files." --model gemini-4-hydrogen-xhigh --mode plan --print-timeout 900s </dev/null`. A run takes several minutes.
+- Plan mode is not a write barrier (agy auto-approves commands here), so record `git status --porcelain -uall`, `git diff HEAD | shasum` and `shasum` of task-owned untracked files before and after (outside git, `shasum` of the reviewed files); if anything changed, stop and tell the user.
+- Treat each agy finding as a claim: verify it against the code or evidence, act on confirmed ones, and briefly report rejected ones with the reason.
+- If agy is unavailable (command missing, not logged in, usage limit reached, model unavailable, unsupported location, or an error without a result), say so in one line and review it yourself: `ponytail:ponytail-review` for code diffs, a critical self-review for plans, diagnoses and instruction edits.
+- Reason: the user wants an independent review of local changes, plans, MRs, incident diagnoses and instruction edits; Claude Code uses Codex for it, and Codex uses agy (2026-11-18).
 - Remove unnecessary code and fix actionable findings, then run the relevant checks. If the diff changes, review it again before committing or pushing. Loading the skill or passing tests alone does not satisfy this gate.
 - A completed review covers both commit and push while the reviewed task diff is unchanged. Reuse its result; repeat review only after a relevant diff change or new finding.
 
@@ -71,7 +82,12 @@ When your changes create orphans:
 - Extend existing rules and files rather than scattering guidance across new files.
 
 
+## Recurring Habits and Skill Suggestions
+
+- Remember confirmed, recurring user habits at the narrowest applicable scope: project-specific habits in the project's existing instructions or context files, and cross-project habits in global Codex instructions. Keep the global synchronization source consistent with changes; extend existing files and do not turn one-off actions into permanent rules.
+- When a workflow repeats frequently or daily, proactively suggest a skill at the appropriate project or global level. Explain the repeated work it would simplify and check existing skills for overlap. Suggest extending an existing skill when suitable; create or substantially update a skill when the user requests it.
+
 ## Coding Standards
 - Before implementing, refactoring, or reviewing Python/FastAPI or Go services and applications, load and follow the `coding-standards` skill from the available skill catalog. For scripts and small utilities, apply only relevant simplicity rules.
 - Use Graphify automatically only for relevant queries against an existing graph. Build or update graphs only when explicitly requested; use direct code search for ordinary lookups and edits.
-- Apply Ponytail session modes only when explicitly requested. This does not change the required `ponytail:ponytail-review` before commit or push.
+- Apply Ponytail session modes only when explicitly requested. Use `ponytail:ponytail-review` as the fallback review of code diffs when agy is unavailable.

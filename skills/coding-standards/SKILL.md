@@ -9,15 +9,15 @@ description: Apply personal architecture and testing rules when implementing, re
 - Architecture rules guide responsibility and dependency boundaries. They do not require a separate class, interface, DTO, package, or file for every responsibility. Preserve existing boundaries; introduce new structure only when the current task requires it.
 - Apply these architecture rules to services and applications.
 - Keep scripts and small utilities simple; do not force a layered architecture.
-- Follow the existing project structure and conventions without weakening its layer boundaries.
-- Do not broaden a local change into an architectural refactor without approval.
 
 ## Layers and Dependencies
 - Separate Domain, Application, Infrastructure, and Presentation responsibilities.
 - Enforce dependency direction; create separate packages or modules only when useful.
 - Keep Domain independent of Application, Infrastructure, and Presentation.
-- Access databases, external services, and other infrastructure through ports defined in Domain or Application, according to who owns the contract.
+- When Domain or Application needs infrastructure access, use ports whose contracts are owned by the consuming layer.
+- A port describes a boundary contract; it does not by itself require a separate interface or package. For simple CRUD, do not add Domain or Application layers solely to host ports. Preserve project-specific infrastructure boundaries.
 - Do not create interfaces for ordinary internal calls without a concrete need.
+- Do not introduce CQRS, mediators, generic repositories, or DI containers without a concrete use case.
 
 ## Domain
 - Keep business rules, invariants, and business validation in Domain.
@@ -31,7 +31,8 @@ description: Apply personal architecture and testing rules when implementing, re
 - Put business use-case orchestration in Application.
 - Application defines transaction boundaries; Infrastructure implements them.
 - Introduce a Unit of Work only when a concrete use case requires it.
-- Keep persistence, external clients, and technical logging in Infrastructure.
+- Keep persistence, external clients, and logging configuration and implementation in Infrastructure.
+- Application and Presentation may use the existing logger to record use-case execution and request handling; do not introduce a logging abstraction solely for layer separation.
 - Keep request-format validation, DTO mapping, and transaction mechanics outside domain entities.
 
 ## Presentation and Data Models
@@ -51,14 +52,9 @@ description: Apply personal architecture and testing rules when implementing, re
 
 ## Tests and Verification
 - Test primary business scenarios and significant failure cases.
-- Cover changed business rules with focused unit tests.
-- Add integration tests when changing database or external-integration behavior.
-- Add end-to-end tests when cross-layer behavior requires verification.
-- For bug fixes, add a regression test when practical.
+- Test observable behavior and results rather than internal call sequences or implementation structure.
+- Verify changed behavior with focused tests at the level that checks it reliably; add or update tests only when existing checks do not cover the change.
+- For database or external-integration changes, use integration tests when correctness depends on actual resource behavior; add or update them when existing checks do not cover the change.
+- Use end-to-end tests only when narrower checks cannot verify the relevant cross-layer behavior.
+- For bug fixes, add or update a regression test when practical; confirm it fails for the expected reason before applying the fix.
 - Do not test every method, trivial mapping, or implementation detail, or require tests at every layer for every change.
-- Run the smallest useful set of checks for the change.
-
-## Simplicity
-- Prefer explicit dependencies, straightforward code, and composition.
-- Do not introduce CQRS, mediators, generic repositories, DI containers, or speculative abstractions without a concrete need.
-- Add only what the current task requires.
