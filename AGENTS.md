@@ -48,6 +48,7 @@ When your changes create orphans:
 ## 4. Workspace & Git Hygiene
 
 - Don't discard existing work or data unless the user has authorized that loss.
+- Name new branches with the `feature/` prefix.
 - Never commit secrets, `.env` files, or credential dumps.
 - Independent review gate. Get an independent review from Antigravity CLI (`agy`, model `gemini-4-hydrogen-xhigh`, Google AI Pro subscription, not API tokens) in these cases. Never call `codex` for this: you are Codex, so it would review its own work.
   1. Local changes: after finishing code changes in a git repository and before any commit or push, review the complete task diff, including staged, unstaged, and task-owned untracked files.
@@ -56,6 +57,7 @@ When your changes create orphans:
   4. Someone else's MR/branch the user asks to review: run agy as a second opinion next to your own review. Check the branch out in a separate `git worktree` so the user's working tree stays untouched.
   5. Incident diagnosis: before presenting a root-cause conclusion, or proposing or making a fix based on it, have agy check the conclusion against the evidence.
   6. Instruction edits: changes to `AGENTS.md`, `CLAUDE.md`, rules, skills, config or hooks, including files outside git.
+- Skip this gate when you are the reviewer: in the `codex review` command, or in `codex exec` started with a review request (another agent's gate), review the material yourself and call no other reviewer (agy, Codex, or a review skill run as a separate process). Case 4 above applies only when the user asks for the review in a chat; the `codex review` command is always treated as a nested gate. Reason: Claude Code's review gate runs `codex review`; a nested agy run there added minutes and Google quota and wrote files outside the repository (2026-11-19).
 - How to run it. agy has no review subcommand, so the prompt names the scope: for local changes, `git diff HEAD` plus the task-owned untracked files by path; for a branch, `git diff <target-branch>...HEAD`; for a commit, `git show <SHA>`; otherwise a request file with the material (plan text; diagnosis with evidence locations; before/after text of instruction edits) by absolute path. Run from the repository root, or from a temporary directory outside git, and wait for it to finish before passing the gate (commit, push, MR, plan approval, fix): `agy -p "<scope>. Report concrete problems only, each with file:line and a fix. Do not modify files." --model gemini-4-hydrogen-xhigh --mode plan --print-timeout 900s </dev/null`. A run takes several minutes.
 - Plan mode is not a write barrier (agy auto-approves commands here), so record `git status --porcelain -uall`, `git diff HEAD | shasum` and `shasum` of task-owned untracked files before and after (outside git, `shasum` of the reviewed files); if anything changed, stop and tell the user.
 - Treat each agy finding as a claim: verify it against the code or evidence, act on confirmed ones, and briefly report rejected ones with the reason.
@@ -64,10 +66,17 @@ When your changes create orphans:
 - Remove unnecessary code and fix actionable findings, then run the relevant checks. If the diff changes, review it again before committing or pushing. Loading the skill or passing tests alone does not satisfy this gate.
 - A completed review covers both commit and push while the reviewed task diff is unchanged. Reuse its result; repeat review only after a relevant diff change or new finding.
 
+### Merge Requests and Pull Requests
+
+- Never mention Codex, Claude, ChatGPT or AI assistance in commit messages or in MR/PR titles, descriptions or comments. Omit AI co-author trailers and "generated with" lines.
+- Describe briefly what changed and how the problem was solved. Omit check logs, deployment status and verification plans unless requested. Project rules for the description format, such as Jira links, still apply.
+- When posting MR/PR, Jira or other API text with non-ASCII content (Cyrillic), build the JSON from real UTF-8 strings (e.g. `json.dumps` of a Python literal, or `glab`/`gh` with a body file); never pass text through `unicode_escape`, shell `printf` escapes or other re-encoding. Read the created text back from the API and check it before reporting. Reason: a `unicode_escape` round-trip once garbled the Cyrillic in four MR descriptions.
+
 ## 5. Goal-Driven Execution
 
 - For behavior changes, run the smallest useful check. Reproduce a reported bug before fixing it when feasible.
 - For refactors, compare behavior before and after.
+- For UI layout or style changes, check in a browser the states users actually reach, not only the first screen: a scrolled page under fixed or sticky elements, every theme, and a narrow width. Reason: a restyle once made a sticky header transparent; the first screen looked right, but content showed through it on scroll and the regression reached production. Do not add mobile-specific layout code (media queries, narrow-width tweaks) unless the user asks for mobile support. Reason: the user rejected unrequested mobile adaptations.
 - For multi-step tasks, state a concise plan with a check for each step.
 - Read selectively: locate relevant files or symbols first, then inspect needed sections and connected behavior. Reuse unchanged content already available in context; reread only after changes, missing or truncated evidence, or a specific unresolved question.
 - Batch independent reads and searches. Start with small tool output budgets, usually 2,000–4,000 tokens, and expand when needed for correctness. Narrow queries and inspect large logs in sections instead of dumping them. Never treat truncated output as complete evidence or omit relevant failures.
@@ -82,8 +91,9 @@ When your changes create orphans:
 - Extend existing rules and files rather than scattering guidance across new files.
 
 
-## Recurring Habits and Skill Suggestions
+## Corrections, Recurring Habits and Skill Suggestions
 
+- When the user corrects your behavior or points out a mistake that could recur, record the lesson in the same turn without being asked (in read-only work, such as an audit, propose the edit instead): cross-project lessons in the global instructions (edit `AGENTS.md` in the synchronization source `$CODEX_SETTINGS_CHECKOUT`, default `~/.local/share/codex-settings`, and the installed copy in `$CODEX_HOME`, default `~/.codex`; while the checkout has uncommitted changes, sync stops pulling updates from GitHub, so commit and push it when the user allows, otherwise tell the user that updates wait until it is committed), project lessons in the project's `AGENTS.md` or rules (when a checkout's `AGENTS.md` is a Git-ignored pointer to shared project instructions, edit the file it points to). Write it as a general rule with the reason, update an existing rule instead of duplicating it, and tell the user in one line where it was saved. Skip one-off task feedback that will not recur.
 - Remember confirmed, recurring user habits at the narrowest applicable scope: project-specific habits in the project's existing instructions or context files, and cross-project habits in global Codex instructions. Keep the global synchronization source consistent with changes; extend existing files and do not turn one-off actions into permanent rules.
 - When a workflow repeats frequently or daily, proactively suggest a skill at the appropriate project or global level. Explain the repeated work it would simplify and check existing skills for overlap. Suggest extending an existing skill when suitable; create or substantially update a skill when the user requests it.
 
