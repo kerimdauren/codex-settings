@@ -185,6 +185,7 @@ def apply_settings(source: Path, codex_home: Path):
         command = subprocess.list2cmdline([str(Path(shutil.which("uv"))), "run", "--script",
                                            str(codex_home / "scripts/workspace.py"), "sync", "--background"])
         hooks["hooks"]["SessionStart"][0]["hooks"][0]["command"] = command
+        hooks["hooks"].pop("PreToolUse", None)  # its rtk guard is POSIX shell
         hooks_path.write_text(json.dumps(hooks, indent=2) + "\n", encoding="utf-8")
 
 
